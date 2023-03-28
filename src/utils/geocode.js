@@ -7,7 +7,6 @@ const axios = require("axios");
 const geocode = async (address) => {
   try {
     const mapboxAccessToken = process.env.mapbox_access_token;
-    console.log({ mapboxAccessToken, env: process.env })
     const geocodingUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
       address
     )}.json?access_token=${mapboxAccessToken}`;
