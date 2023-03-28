@@ -10,8 +10,14 @@ const weatherForm = document.querySelector('form');
 const search = document.querySelector('input');
 const message1 = document.querySelector('#message-1');
 const message2 = document.querySelector('#message-2');
+const getWeatherButton = document.querySelector('#get-weather-button');
 
-weatherForm.addEventListener('submit', async (e) => {
+
+/**
+ * Invokes the fetchWeather function and displays the results
+ * @param {Event} e 
+ */
+const getWeather = async (e) => {
   try {
     e.preventDefault();
     const location = search.value;
@@ -39,4 +45,8 @@ weatherForm.addEventListener('submit', async (e) => {
     message1.textContent = error.message;
     message2.textContent = '';
   }
-});
+};
+
+
+getWeatherButton.addEventListener('click', getWeather);
+weatherForm.addEventListener('submit', getWeather);
