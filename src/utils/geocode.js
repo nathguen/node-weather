@@ -38,7 +38,7 @@ const geocode = async (address) => {
     ) {
       throw new Error("Unable to find location. Try another search.");
     } else {
-      throw new Error(error);
+      throw error;
     }
   }
 };
