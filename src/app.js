@@ -13,18 +13,6 @@ const viewsPath = path.join(__dirname, "./templates/views");
 const partialsPath = path.join(__dirname, "./templates/partials");
 
 
-// disable CORS
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-    return res.status(200).json({});
-  }
-  next();
-});
-
-
 // Setup handlebars engine and views location
 app.set("view engine", "hbs");
 app.set("views", viewsPath);
@@ -104,7 +92,6 @@ app.get('*', (req, res) => {
 
 app.listen(3000, () => {
   console.log("Server is up on port 3000.");
-  console.log({ env: process.env })
 })
 
 // thescrappy.dev
