@@ -7,15 +7,15 @@ const percent = require("percent-value");
 
 const { cToF } = require("./conversion");
 
-const forecast = async (lat, long) => {
-  const appleKeyFileName = process.env.apple_key_filename;
-  let appleAuthKey = "";
-  if (process.env.NODE_ENV === "production") {
-    appleAuthKey = fs.readFileSync(`/etc/secrets/${appleKeyFileName}`);
-  } else {
-    appleAuthKey = fs.readFileSync(`${path.join(__dirname, '../../keys/')}/${appleKeyFileName}`);
-  }
+const appleKeyFileName = process.env.apple_key_filename;
+let appleAuthKey = "";
+if (process.env.NODE_ENV === "production") {
+  appleAuthKey = fs.readFileSync("/etc/secrets/apple_weatherkit_key");
+} else {
+  appleAuthKey = fs.readFileSync(`${path.join(__dirname, '../../keys/')}/${appleKeyFileName}`);
+}
 
+const forecast = async (lat, long) => {
   // Creating the signed token needs specific data
   var token = jwt.sign(
     {

@@ -1,4 +1,12 @@
+const fs = require("fs");
 const axios = require("axios");
+
+let mapboxAccessToken = "";
+if (process.env.NODE_ENV === "production") {
+  mapboxAccessToken = fs.readFileSync("/etc/secrets/mapbox_access_token");
+} else {
+  mapboxAccessToken = process.env.mapbox_access_token;
+}
 
 /**
  *
@@ -6,7 +14,6 @@ const axios = require("axios");
  */
 const geocode = async (address) => {
   try {
-    const mapboxAccessToken = process.env.mapbox_access_token;
     const geocodingUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
       address
     )}.json?access_token=${mapboxAccessToken}`;
