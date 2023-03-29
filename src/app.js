@@ -87,9 +87,7 @@ app.get("/weather", async (req, res) => {
       address: req.query.address,
     });
   } catch (error) {
-    res.send({
-      error: error.message,
-    });
+    res.send(error);
   }
 });
 
