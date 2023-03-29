@@ -13,6 +13,14 @@ This weather app can be found at [weather.thescrappy.dev](https://weather.thescr
 
 
 
+https://user-images.githubusercontent.com/6416887/228396974-23dba11b-c68d-4f5d-9cae-bcac51b3f6a8.mov
+
+
+
+
+
+
+
 ## Deployment
 
 See https://render.com/docs/deploy-node-express-app or follow the steps below:
