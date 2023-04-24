@@ -7,12 +7,16 @@ const percent = require("percent-value");
 
 const { cToF } = require("./conversion");
 
+const { JWT_ID, JWT_ISSUER, JWT_EXPIRE, JWT_KEY_ID } = process.env;
+
 const appleKeyFileName = process.env.apple_key_filename;
 let appleAuthKey = "";
 if (process.env.NODE_ENV === "production") {
   appleAuthKey = fs.readFileSync("/etc/secrets/apple_weatherkit_key");
 } else {
-  appleAuthKey = fs.readFileSync(`${path.join(__dirname, '../../keys/')}/${appleKeyFileName}`);
+  appleAuthKey = fs.readFileSync(
+    `${path.join(__dirname, "../../keys/")}/${appleKeyFileName}`
+  );
 }
 
 const forecast = async (lat, long) => {
@@ -23,19 +27,19 @@ const forecast = async (lat, long) => {
     },
     appleAuthKey,
     {
-      jwtid: "2C24UYJCK7.dev.thescrappy.nodeweatherapp", // you can find your TeamID in the top right corner of your developer account, then put a `.` and then put in your reverse URL App Id
-      issuer: "2C24UYJCK7", // find your TeamID in your developer account
-      expiresIn: "1h", // give it 1 hour of validity
-      keyid: "NSW68ZMJ5K", // this is the ID for the key you created
+      jwtid: JWT_ID,
+      issuer: JWT_ISSUER,
+      expiresIn: JWT_EXPIRE,
+      keyid: JWT_KEY_ID,
       algorithm: "ES256", // this is the algorithm Apple used
       header: {
         // see details below for this
-        id: "2C24UYJCK7.dev.thescrappy.nodeweatherapp",
+        id: JWT_ID,
       },
     }
   );
 
-  const url = `https://weatherkit.apple.com/api/v1/weather/en/${lat}/${long}?dataSets=forecastDaily,currentWeather&country=US&timezone=America/Denver`;
+  const url = `https://weatherkit.apple.com/api/v1/weather/en/${lat}/${long}?dataSets=forecastDaily,currentWeather`;
 
   // add the token to your headers
   const config = {
