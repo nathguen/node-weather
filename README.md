@@ -9,7 +9,7 @@ The app in this repo is deployed at [https://express.onrender.com](https://expre
 
 ## Usage
 
-This weather app can be found at [weather.thescrappy.dev](https://weather.thescrappy.dev).
+This weather app can be found at [weather.thescrappy.dev](https://weather.thescrappy.dev). Please be patient with this link. It utilizes a free tier service from [render.com](https://render.com), so it can be a little slow when you first try to load the page.
 
 
 
